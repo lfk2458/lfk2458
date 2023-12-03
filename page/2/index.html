@@ -299,7 +299,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/%E8%BD%AF%E4%BB%B6%E6%95%99%E7%A8%8B/Docker/Docker%E5%AE%89%E8%A3%85MySQL.html" target="_self">
         <div>
-          下载 MySQL 镜像 准备映射目录群晖目录下自己选择个地方创建这三个目录，分别用于存储配置文件、数据、错误日志。在创建容器时会用到它们并给对应的映射关系 创建容器  双击镜像列表 mysql 开始创建 在变量中添加“MYSQL_ROOT_PASSWORD”变量，值为密码 添加端口映射 添加文件夹映射   启动容器
+          下载 MySQL 镜像 准备映射目录群晖目录下自己选择个地方创建这三个目录，分别用于存储配置文件、数据、错误日志。在创建容器时会用到它们并给对应的映射关系 创建容器   双击镜像列表 mysql 开始创建 在变量中添加“MYSQL_ROOT_PASSWORD”变量，值为密码 添加端口映射 添加文件夹映射   启动容器
         </div>
       </a>
 
@@ -482,7 +482,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/%E8%BD%AF%E4%BB%B6%E6%95%99%E7%A8%8B/Git/Git%E5%8D%87%E7%BA%A7%E7%89%88%E6%9C%AC%EF%BC%88windows%EF%BC%89.html" target="_self">
         <div>
-          一、从官网下载最新安装包在 git 官网下载安装包并安装。 Git For Windows 最新下载地址。下载下来后，双击开始，然后一直点下一步，完事。 二、【推荐】通过升级命令一键更新按 windows 键+S 键，在弹出的界面输入 Git Bash，然后输入下面的命令 1git update-git-for-windows 它就会开始自动下载了： ​​
+          一、从官网下载最新安装包在 git 官网下载安装包并安装。Git For Windows 最新下载地址。下载下来后，双击开始，然后一直点下一步，完事。 二、【推荐】通过升级命令一键更新按 windows 键+S 键，在弹出的界面输入 Git Bash，然后输入下面的命令 1git update-git-for-windows 它就会开始自动下载了： ​​
         </div>
       </a>
 
@@ -536,14 +536,14 @@
       <h1 class="index-header">
         
         <a href="/%E7%BC%96%E7%A8%8B/Csharp/%E7%94%B1%E4%BA%8Ei++%E4%B8%8E++i%E7%9A%84%E8%BF%90%E7%AE%97%E9%A1%BA%E5%BA%8F%E4%B8%8D%E5%90%8C%E8%80%8C%E5%AF%BC%E8%87%B4%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF.html" target="_self">
-          由于 i++与++i 的运算顺序不同而导致的死循环
+          由于 i++ 与++i 的运算顺序不同而导致的死循环
         </a>
       </h1>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/%E7%BC%96%E7%A8%8B/Csharp/%E7%94%B1%E4%BA%8Ei++%E4%B8%8E++i%E7%9A%84%E8%BF%90%E7%AE%97%E9%A1%BA%E5%BA%8F%E4%B8%8D%E5%90%8C%E8%80%8C%E5%AF%BC%E8%87%B4%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF.html" target="_self">
         <div>
-          死循环的原因：i++ 和 ++i 的基本功能是相同的，都是对变量 i 进行自增 1 运算，从功能上讲相当于 i =i+1 ;两个的区别在于： int i=1,a=0;i++ 先运算在赋值，例如 a=i++, 先运算 a=i, 后运算 i=i+1, 所以结果是 a == 1 ；++i 先赋值在运算，例如 a=++i, 先运算 i=i+1, 后运算 a=i, 所以结果是 a == 2 。  12345
+          死循环的原因：i++ 和 ++i 的基本功能是相同的，都是对变量 i 进行自增 1 运算，从功能上讲相当于 i =i+1 ;两个的区别在于：int i=1,a=0;i++ 先运算在赋值，例如 a=i++, 先运算 a=i, 后运算 i=i+1, 所以结果是 a == 1；++i 先赋值在运算，例如 a=++i, 先运算 i=i+1, 后运算 a=i, 所以结果是 a == 2。  12345678
         </div>
       </a>
 
@@ -665,7 +665,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/%E7%BC%96%E7%A8%8B/SQL/SQL%E4%B8%A4%E8%A1%A8%E4%B9%8B%E9%97%B4%EF%BC%9A%E6%A0%B9%E6%8D%AE%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%9A%84%E5%AD%97%E6%AE%B5%E6%9B%B4%E6%96%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%9A%84%E5%AD%97%E6%AE%B5.html" target="_self">
         <div>
-          写法轻松，更新效率高：  12345update table1set field1=table2.field1,field2=table2.field2from table2where table1.id=table2.id  常规方式，另一种写法相当于一个 Left join， 以外面的 where 为更新条数，如果不加 where 就是所有记录  123update table1set fi
+          写法轻松，更新效率高：  12345update table1set field1=table2.field1,field2=table2.field2from table2where table1.id=table2.id  常规方式，另一种写法相当于一个 Left join，以外面的 where 为更新条数，如果不加 where 就是所有记录  123update table1set fie
         </div>
       </a>
 
@@ -787,7 +787,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/%E8%BD%AF%E4%BB%B6%E6%95%99%E7%A8%8B/%E6%80%9D%E6%BA%90%E7%AC%94%E8%AE%B0/%E6%80%9D%E6%BA%90%E7%AC%94%E8%AE%B0%E6%8C%82%E4%BB%B6src-sy-post-publisher%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.html" target="_self">
         <div>
-          因为目前我只使用了博客园和语雀，所以只写了博客园、语雀和 Typecho 的配置内容。 ‍ 博客园 博客网址：https://www.cnblogs.com/博客设置-设置-博客地址/ 账号：博客设置-设置-其他设置-MetaWeblog 登录名 密码/Token: 博客设置-设置-其他设置-MetaWeblog 访问令牌 API 地址：博客设置-设置-其他设置-MetaWeblog 访问地址 预
+          因为目前我只使用了博客园和语雀，所以只写了博客园、语雀和 Typecho 的配置内容。 ‍ 博客园 博客网址：https://www.cnblogs.com/博客设置 - 设置 - 博客地址/ 账号：博客设置 - 设置 - 其他设置-MetaWeblog 登录名 密码/Token: 博客设置 - 设置 - 其他设置-MetaWeblog 访问令牌 API 地址：博客设置 - 设置 - 其他设置-M
         </div>
       </a>
 
@@ -876,7 +876,7 @@
     <div class="beian">
   <span>
     <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-      皖ICP备2021010043号
+      皖 ICP 备 2021010043 号
     </a>
   </span>
   

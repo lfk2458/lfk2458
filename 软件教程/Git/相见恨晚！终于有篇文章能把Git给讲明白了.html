@@ -56,7 +56,7 @@
 <meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b138e1f72bb5405ca3aa7acded22aadc~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
 <meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7339b3b51c25448194967744b77c1d99~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
 <meta property="article:published_time" content="2023-04-27T13:04:40.000Z">
-<meta property="article:modified_time" content="2023-05-28T13:38:08.620Z">
+<meta property="article:modified_time" content="2023-12-03T15:47:57.362Z">
 <meta property="article:author" content="医学院の工科狗">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
@@ -320,10 +320,10 @@
             
               <div class="markdown-body">
                 
-                <h2 id="相见恨晚！终于有篇文章能把-Git-给讲明白了"><a href="#相见恨晚！终于有篇文章能把-Git-给讲明白了" class="headerlink" title="相见恨晚！终于有篇文章能把 Git 给讲明白了"></a>相见恨晚！终于有篇文章能把 Git 给讲明白了</h2><h1 id="0-本文摘要"><a href="#0-本文摘要" class="headerlink" title="0 本文摘要"></a>0 本文摘要</h1><p>相信大家在日常工作中都会用到 Git，但可能对于刚接触到 Git 的同学们来说这种工具的使用还不是很熟练，或者是对于虽然能够规范使用 Git 来完成日常开发的同学们，但可能对于命令背后的原理或许还是一脸懵逼，因此本文希望用较为简单的语言，能够在 Git 的使用上给大家带来帮助或者能解决大家的部分疑惑。首先第 1 节带大家由浅入深的了解 Git 的一些原理，其次第 2 节具体针对 Git 的常用分支操作-合并的两种方式（merge 和 rebase）进行了讨论以及给出了这两种合并方式的使用建议，最后在附录中分类整理了一些关于合并操作的常用命令，方便大家快速查找使用。</p>
+                <h2 id="相见恨晚！终于有篇文章能把-Git-给讲明白了"><a href="#相见恨晚！终于有篇文章能把-Git-给讲明白了" class="headerlink" title="相见恨晚！终于有篇文章能把 Git 给讲明白了"></a>相见恨晚！终于有篇文章能把 Git 给讲明白了</h2><h1 id="0-本文摘要"><a href="#0-本文摘要" class="headerlink" title="0 本文摘要"></a>0 本文摘要</h1><p>相信大家在日常工作中都会用到 Git，但可能对于刚接触到 Git 的同学们来说这种工具的使用还不是很熟练，或者是对于虽然能够规范使用 Git 来完成日常开发的同学们，但可能对于命令背后的原理或许还是一脸懵逼，因此本文希望用较为简单的语言，能够在 Git 的使用上给大家带来帮助或者能解决大家的部分疑惑。首先第 1 节带大家由浅入深的了解 Git 的一些原理，其次第 2 节具体针对 Git 的常用分支操作 - 合并的两种方式（merge 和 rebase）进行了讨论以及给出了这两种合并方式的使用建议，最后在附录中分类整理了一些关于合并操作的常用命令，方便大家快速查找使用。</p>
 <h1 id="1-关于-Git-的一些基本原理"><a href="#1-关于-Git-的一些基本原理" class="headerlink" title="1 关于 Git 的一些基本原理"></a>1 关于 Git 的一些基本原理</h1><h2 id="1-1-Git-是什么—-版本控制"><a href="#1-1-Git-是什么—-版本控制" class="headerlink" title="1.1 Git 是什么—-版本控制"></a>1.1 Git 是什么—-版本控制</h2><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/632d50e21a90414aab2bde95a9a1a0a5~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>Git 是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。最初的目的是 LinusTorvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。</p>
-<p>那么什么是“版本控制”呢？我为什么要关心它呢？ 版本控制是一种在开发的过程中用于管理我们对文件、目录或工程等内容的修改历史，方便查看更改历史记录，备份以便恢复以前的版本的软件工程技术。简单来说就是用于管理多人协同开发项目的技术。如果在多人进行软件开发时没有使用版本控制，将会引发很多问题，如软件代码的一致性、软件内容的冗余、软件过程的事物性、软件开发过程中的并发性、软件源代码的安全性，以及软件的整合等问题。下面总结了一些使用版本控制的优点：</p>
+<p>那么什么是“版本控制”呢？我为什么要关心它呢？版本控制是一种在开发的过程中用于管理我们对文件、目录或工程等内容的修改历史，方便查看更改历史记录，备份以便恢复以前的版本的软件工程技术。简单来说就是用于管理多人协同开发项目的技术。如果在多人进行软件开发时没有使用版本控制，将会引发很多问题，如软件代码的一致性、软件内容的冗余、软件过程的事物性、软件开发过程中的并发性、软件源代码的安全性，以及软件的整合等问题。下面总结了一些使用版本控制的优点：</p>
 <p>● 实现跨区域多人协同开发</p>
 <p>● 追踪和记载一个或者多个文件的历史记录</p>
 <p>● 组织和保护你的源代码和文档</p>
@@ -342,7 +342,7 @@
 <h3 id="（2）文件状态"><a href="#（2）文件状态" class="headerlink" title="（2）文件状态"></a>（2）文件状态</h3><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1cc893c62bfa45a5963ac16992d7de42~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>Git 中的文件可分为五种状态：</p>
 <ul>
-<li>untrack（未追踪）：未跟踪，此文件在文件夹中，但并没有加入到 git 库，不参与版本控制。 通过 git add 状态变为 Staged；</li>
+<li>untrack（未追踪）：未跟踪，此文件在文件夹中，但并没有加入到 git 库，不参与版本控制。通过 git add 状态变为 Staged；</li>
 <li>unmodified（未修改）：文件已经入库，未修改，即版本库中的文件快照内容与文件夹中完全一致。这种类型的文件有两种去处，如果它被修改，而变为 Modified。如果使用 git rm 移出版本库，则成为 Untracked 文件；</li>
 <li>modified（已修改）：已修改表示修改了文件，但还没保存到数据库中；</li>
 <li>staged（已暂存）：已暂存表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中；</li>
@@ -353,8 +353,8 @@
 <p>（2）git add fileA，将更改的部分添加到暂存区。具体过程是：首先，它给 A 文件创建 1 个校验和添加到暂存区中。校验和可以理解为是一个文件的唯一索引，git 通过 SHA-1 这种哈希算法，遍历每一个文件，根据文件内容等信息，为文件创建索引，以后只要根据这个索引，我们就可以取出一个文件中的完整内容。然后，git 对当前的暂存区拍了一张照片，也就是我们所说的快照，并将快照放入版本库。快照里包括什么内容呢？快照里包括我们刚才说的文件索引和文件完整内容（类似于 key-value 的结构）。同时，git 采用内置的 blob 对象来存储这三个文件的快照。</p>
 <p>（3）git commit 来提交更新，找到暂存区的文件，将快照永久性存储到仓库区中。具体过程是：首先，git 用一个内置的 tree 对象，把文件的目录结构保存下来。然后，git 在这个 tree 对象上又包了一层，创建了一个 commit 对象，这个 commit 对象也是我们说的 git 进行版本管理的最终对象。commit 对象里包含了 tree 对象，还包含作者、提交评论等信息。</p>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9934fedb4e314e83b3cf9ee59e31cc9a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
-<h3 id="（3）数据存储"><a href="#（3）数据存储" class="headerlink" title="（3）数据存储"></a>（3）数据存储</h3><p>以上我们了解到了 Git 的基本工作流程，那么 Git 是如何存储代码信息的？我们知道，Git 与其它版本控制系统不同的是，保存的不是文件的变化或者差异，而是一系列不同时刻的快照 。在进行提交操作时，Git 会保存一个提交对象（commit object）。知道了 Git 保存数据的方式，我们可以很自然的想到——该提交对象会包含一个指向暂存内容快照的指针。 但不仅仅是这样，该提交对象还包含了作者的姓名和邮箱、提交时输入的信息以及指向它的父对象的指针。 首次提交产生的提交对象没有父对象，普通提交操作产生的提交对象有一个父对象， 而由多个分支合并产生的提交对象有多个父对象。</p>
-<p>那么上述提到的快照是什么呢？快照就是在执行 git commit 时，对当前暂存区的情况拍摄的一张“照片“，这个照片中涵盖的若干信息将被存放到 git 版本库下。若干信息指的是什么？是文件的索引+文件的完整内容（key-value 结构），文件的目录结构，和提交信息，这三者分别用 git 内置的 blob，tree，commit 对象进行存储。</p>
+<h3 id="（3）数据存储"><a href="#（3）数据存储" class="headerlink" title="（3）数据存储"></a>（3）数据存储</h3><p>以上我们了解到了 Git 的基本工作流程，那么 Git 是如何存储代码信息的？我们知道，Git 与其它版本控制系统不同的是，保存的不是文件的变化或者差异，而是一系列不同时刻的快照。在进行提交操作时，Git 会保存一个提交对象（commit object）。知道了 Git 保存数据的方式，我们可以很自然的想到——该提交对象会包含一个指向暂存内容快照的指针。但不仅仅是这样，该提交对象还包含了作者的姓名和邮箱、提交时输入的信息以及指向它的父对象的指针。首次提交产生的提交对象没有父对象，普通提交操作产生的提交对象有一个父对象，而由多个分支合并产生的提交对象有多个父对象。</p>
+<p>那么上述提到的快照是什么呢？快照就是在执行 git commit 时，对当前暂存区的情况拍摄的一张“照片“，这个照片中涵盖的若干信息将被存放到 git 版本库下。若干信息指的是什么？是文件的索引 + 文件的完整内容（key-value 结构），文件的目录结构，和提交信息，这三者分别用 git 内置的 blob，tree，commit 对象进行存储。</p>
 <ul>
 <li>blob: 在 git 中对应着”内容 (content)”, 约等于一整个文件（不包含文件名和文件 mode);</li>
 <li>tree: 在 git 中对应着”目录 (directory)”, 正如每一个目录中可以存储文件或其他子目录一样，tree 的每一个节点可以是一个 blob, 或者另一个 tree;</li>
@@ -371,14 +371,14 @@
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bdd8c3dc059e44beb06894b6aea46340~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>到这里，我们就大概整明白了一个分支是如何对应顶层目录下的所有内容了。更进一步地发散开，我们已知一个 commit 可能有零到多个父 commit, 则可以进一步了解到，在一片 commit 组成的森林里，commit 只是指向某一棵树的指示牌而已。</p>
 <h1 id="2-Git-的分支合并方式浅析"><a href="#2-Git-的分支合并方式浅析" class="headerlink" title="2 Git 的分支合并方式浅析"></a>2 Git 的分支合并方式浅析</h1><h2 id="2-1-分支是什么"><a href="#2-1-分支是什么" class="headerlink" title="2.1 分支是什么"></a>2.1 分支是什么</h2><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/519a822fd4bd4232a1a308e5a08367ee~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>Git 的分支，从本质上来说它仅仅是指向提交对象的可变指针。 Git 的默认分支名字是 master。 在多次提交操作之后，我们其实已经有一个指向最后那个提交对象的 master 分支。 master 分支会在每次提交时自动向前移动。下面介绍下关于 Git 分支的一些基本概念：</p>
+<p>Git 的分支，从本质上来说它仅仅是指向提交对象的可变指针。Git 的默认分支名字是 master。在多次提交操作之后，我们其实已经有一个指向最后那个提交对象的 master 分支。master 分支会在每次提交时自动向前移动。下面介绍下关于 Git 分支的一些基本概念：</p>
 <ul>
 <li><p>Head 指针：（1）指向当前所在的本地分支，我们可以看到上图中 Head 指向的是 Master 分支，说明当前是在 Master 分支上；（2）Head 指针随着提交操作自动向前移动</p>
 </li>
-<li><p>分支创建：git branch Dev ，会在当前所在的提交对象上创建一个指针。</p>
+<li><p>分支创建：git branch Dev，会在当前所在的提交对象上创建一个指针。</p>
 </li>
-<li>分支切换：git checkout Dev ，这条命令做了两件事（1）将 Head 指针移动到 Dev 分支上（2）将工作目录恢复成 Dev 分支所指向的快照内容。</li>
-<li>分支合并：当我们在 Master 和 Dev 分支各自提交了一次分支后，我们可以看到，提交历史已经产生了分叉，当我们想将 Dev 分支上的修改到 Master 分支上时，我们可以使用 git merge 来完成合并操作。git merge 可以合并一个或者多个分支到你已经检出的分支中， 然后它将当前分支指针移动到合并结果上。</li>
+<li>分支切换：git checkout Dev，这条命令做了两件事（1）将 Head 指针移动到 Dev 分支上（2）将工作目录恢复成 Dev 分支所指向的快照内容。</li>
+<li>分支合并：当我们在 Master 和 Dev 分支各自提交了一次分支后，我们可以看到，提交历史已经产生了分叉，当我们想将 Dev 分支上的修改到 Master 分支上时，我们可以使用 git merge 来完成合并操作。git merge 可以合并一个或者多个分支到你已经检出的分支中，然后它将当前分支指针移动到合并结果上。</li>
 </ul>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c8981852250b49ebbb8b027c878bbc72~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="">  </p>
 <h2 id="2-2-分支的合并策略"><a href="#2-2-分支的合并策略" class="headerlink" title="2.2 分支的合并策略"></a>2.2 分支的合并策略</h2><p>我们在上一节中提到，merge 操作可以将两个分支的修改整合到一起。具体来说，git 会尝试通过两个分支的 commit 指针，分别向前追溯，找到这两个 commit 指针在历史上最近的一次共同提交点。Git 有几种不同的方法用来寻找这个共同提交，而这些方法就是所谓的“合并策略”。默认 git 会帮你自动挑选合适的合并策略，也可以通过 git merge -s 策略名字来强指定使用的策略类型。下面我们来介绍一下最常见的几种合并策略：Fast-foward，Recursice，Octopus 等。</p>
@@ -389,7 +389,7 @@
 <p>图示可以看出，B 中的代码和 Base 一样，说明 B 中并没有对这行代码做修改，而 A 中的代码和 Base 不一样，说明 A 在 Base 的基础上对这行代码做了修改，那么 A 和 B 合并应该采用 A 中的内容。当然还有一种情况是三个文件的代码都不相同，这就需要我们自己手动去解决冲突了：</p>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3f24744283e04a6aacd57c832da8a3ef~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>从上面的例子可以看出采用 Tree-Way-Merge（也称为三向合并）原理来合并代码有个重要前提是可以找到两份代码的“原件”，而 git 因为记录了文件的提交历史，再通过自身的合并策略就可以找到两个 commit 的公共 commit 是哪个，从而通过比对代码来进行合并。</p>
-<h3 id="（1）Fast-forward-amp-Already-Up-To-Date（退化）"><a href="#（1）Fast-forward-amp-Already-Up-To-Date（退化）" class="headerlink" title="（1）Fast forward &amp; Already Up-To-Date（退化）"></a>（1）Fast forward &amp; Already Up-To-Date（退化）</h3><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e9263e1bac39457290f16a0462cc5ea3~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="">      </p>
+<h3 id="（1）Fast-forward-amp-Already-Up-To-Date（退化）"><a href="#（1）Fast-forward-amp-Already-Up-To-Date（退化）" class="headerlink" title="（1）Fast forward &amp; Already Up-To-Date（退化）"></a>（1）Fast forward &amp; Already Up-To-Date（退化）</h3><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e9263e1bac39457290f16a0462cc5ea3~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>Fast foward 是最简单的一种合并策略，如图将 feature 分支合并到 dev 分支上，git 只需要将 dev 分支的指向最后一个 commit 节点上。Fast forward 是 git 在合并两个没有分叉的分支时的默认行为，如果你想禁用掉这种行为，明确拥有一次合并的 commit 记录，可以使用 git merge —no-ff 命令来禁用掉。</p>
 <h3 id="（2）Recursive"><a href="#（2）Recursive" class="headerlink" title="（2）Recursive"></a>（2）Recursive</h3><p>Recursive 是 git 中最重要也是最常用的合并策略，简单概述为：通过算法寻找两个分支的最近公共祖先节点，再将找到的公共祖先节点作为 base 节点使用三向合并的策略来进行合并。举个例子：圆圈里的字母为当前 commit 中的内容，当我们要合并 C2，C3 两个节点时，先找到他们的公共祖先节点 C1，接着和节点 C1 的内容进行对比，因为 1 的内容是 A，所以 C3 并没有修改内容，而 C2 将内容改成 B，所以最后的合并结果 C4 的内容也是 B。</p>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3572185127c5465eb974d56fa088a186~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
@@ -403,9 +403,9 @@
 <p>通过上述分析，我们可以得知正确的合并结果应该是 C，那么 git 要如何保证自己能找到正确的 base 节点，尽可能的减少代码的合并冲突呢？实际上 git 在合并时，如果查找发现满足条件的祖先节点不唯一，那么 git 会首先合并满足条件的祖先节点们，将合并完的结果作为一个虚拟的 base 节点来参与接下来的合并。如上图所示：git 会首先合并节点 C2 和节点 C3，找到他们的公共祖先节点 1，在通过三项合并策略得到一个虚拟的节点 C23，内容是 B，再将节点 C23 作为 base 节点，和节点 5，节点 6 合并，比较完后得出最终版本的内容应该是 C。</p>
 <h3 id="（3）Octopus（复杂化）"><a href="#（3）Octopus（复杂化）" class="headerlink" title="（3）Octopus（复杂化）"></a>（3）Octopus（复杂化）</h3><p>Octopus 策略可以让我们优雅的合并多个分支。前面我们介绍的策略都是针对两个分支的，如果现在有多个分支需要合并，使用 Recursive 策略进行两两合并会产生大量的合并记录：每合并其中两个分支就会产生一个新的记录，过多的合并提交出现在提交历史里会成为一种“杂音“，对提交历史造成不必要的”污染“。Octopus 在合并多个分支时只会生成一个合并记录，这也是 git 合并多个分支的默认策略。如下图：在 dev 分支下执行 git merge feature1 feature2。</p>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/03038eabf3e94ab18115a75029850492~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="2-3-分支的另外一种合并操作：Rebase"><a href="#2-3-分支的另外一种合并操作：Rebase" class="headerlink" title="2.3 分支的另外一种合并操作：Rebase"></a>2.3 分支的另外一种合并操作：Rebase</h2><h3 id="（1）场景举例"><a href="#（1）场景举例" class="headerlink" title="（1）场景举例"></a>（1）场景举例</h3><p>我们举一个实际应用的例子来引出 Rebase 操作，设想两种场景：（1）多人共用一个分支开发，且本地分支落后远程分支，需更新 （2）一个分支单人开发，且当前研发分支落后于主干分支，需更新</p>
+<h2 id="2-3-分支的另外一种合并操作：Rebase"><a href="#2-3-分支的另外一种合并操作：Rebase" class="headerlink" title="2.3 分支的另外一种合并操作：Rebase"></a>2.3 分支的另外一种合并操作：Rebase</h2><h3 id="（1）场景举例"><a href="#（1）场景举例" class="headerlink" title="（1）场景举例"></a>（1）场景举例</h3><p>我们举一个实际应用的例子来引出 Rebase 操作，设想两种场景：（1）多人共用一个分支开发，且本地分支落后远程分支，需更新（2）一个分支单人开发，且当前研发分支落后于主干分支，需更新</p>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1a848a148e4945e68d3031183c785532~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>其实，上述两种情况都可抽象为上图所示，由第（1）种情况来举例，假如有多人在同一个分支上开发，C1、C2 为远端分支的提交，C3、C4 为我们在本地仓库的提交还没有推送到远端，如果这个时候另外一个同学将他的提交记录 C5 推送到了远端，这时，我们再想把我们的本地的提交推送到远端时，就需求有一个更新远程仓库并且合并本地分支的操作，目的是将其它同学提交记录也保留下来。那么如何更新呢？有两种办法：（1）git pull （2）git pull —rebase，我们可以先来看下这两种操作所带来的结果：</p>
+<p>其实，上述两种情况都可抽象为上图所示，由第（1）种情况来举例，假如有多人在同一个分支上开发，C1、C2 为远端分支的提交，C3、C4 为我们在本地仓库的提交还没有推送到远端，如果这个时候另外一个同学将他的提交记录 C5 推送到了远端，这时，我们再想把我们的本地的提交推送到远端时，就需求有一个更新远程仓库并且合并本地分支的操作，目的是将其它同学提交记录也保留下来。那么如何更新呢？有两种办法：（1）git pull（2）git pull —rebase，我们可以先来看下这两种操作所带来的结果：</p>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d1f33ba9cef74ac6b069adeca8c2858d~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="">    其中，左图为 git pull 的操作后的提交历史，我们可以看到在本地分支多了一次合并记录 C6，这是由于 git pull 等同于 git fetch + git merge 操作，先从远端拉取分支，接着再执行合并操作（如有冲突需解除冲突），因此增加了一次提交记录 C6；</p>
 <p>图 5 为执行 git pull —rebase 操作，可以看到我们本地的提交直接变基到了 C5 后面，而且没有增加提交记录，呈现出一条直线，这是因为 git pull —rebase 这个操作其实可以拆分为 fetch+rebase 操作，先从远端同步分支，接着再执行 rebase 操作。所以说这两个命令其实差别是在拉取分支后是执行了 merge 操作，还是 rebase 操作。</p>
 <h3 id="（2）Rebase-原理"><a href="#（2）Rebase-原理" class="headerlink" title="（2）Rebase 原理"></a>（2）Rebase 原理</h3><p>我们可以看到，经过 merge 更新操作远程此时也变成了非直线形式，且有多了一次 merge 记录，而 rebase 更新操作此时变成了一条直线形式，且没有增加提交记录。目前可以总结下，rebase 有以下特点：</p>
@@ -447,7 +447,7 @@
 <p>我们可以直观看到，经过 rebase 更新操作提交历史变成了一条直线形式，而经过 merge 更新操作远程的提交历史为非直线形式，且因为更新（而不是合并）多了一次 merge 记录。但是 rebase 也有很多缺点：</p>
 <p>（1）rebase 之后 如果有冲突 解冲突时需把每次的 commit 都解一遍。</p>
 <p>（2）rebase 之后没有保留 merge 记录，意味着没有保存这步的操作，而 git 的意义不就是保存记录吗？</p>
-<p>但是如果我们换一种思路考虑，我们在本地分支中使用 rebase 来更新，是为了让我们的本地提交记录更加清晰可读。（当然， rebase 不只用来合并 master 的改动，还可以在协同开发时 rebase 队友的改动）而主分支中使用 merge 来把 feature 分支的改动合并进来，是为了保留分支信息。那么如何合适的使用 rebase 和 merge 呢？假如全使用 merge 就会导致提交历史繁复交叉，错综复杂。如果全使用 rebase 就会让你的 commits history 变成一条光秃秃的直线。因此，一个好的 commits history，应该是这样的，有合并记录且分支不交错：</p>
+<p>但是如果我们换一种思路考虑，我们在本地分支中使用 rebase 来更新，是为了让我们的本地提交记录更加清晰可读。（当然，rebase 不只用来合并 master 的改动，还可以在协同开发时 rebase 队友的改动）而主分支中使用 merge 来把 feature 分支的改动合并进来，是为了保留分支信息。那么如何合适的使用 rebase 和 merge 呢？假如全使用 merge 就会导致提交历史繁复交叉，错综复杂。如果全使用 rebase 就会让你的 commits history 变成一条光秃秃的直线。因此，一个好的 commits history，应该是这样的，有合并记录且分支不交错：</p>
 <pre><code class="hljs">*   e2e6451 (HEAD -&gt; master) feture-c finished
 |\
 | * 516fc18 C.2
@@ -851,7 +851,7 @@ git cherry-pick --continue
     <div class="beian">
   <span>
     <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-      皖ICP备2021010043号
+      皖 ICP 备 2021010043 号
     </a>
   </span>
   
