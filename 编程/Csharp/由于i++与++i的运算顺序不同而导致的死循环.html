@@ -19,7 +19,7 @@
     <meta name="description" content="死循环的原因：i++ 和 ++i 的基本功能是相同的，都是对变量 i 进行自增 1 运算，从功能上讲相当于 i &#x3D;i+1 ;两个的区别在于：int i&#x3D;1,a&#x3D;0;i++ 先运算在赋值，例如 a&#x3D;i++, 先运算 a&#x3D;i, 后运算 i&#x3D;i+1, 所以结果是 a &#x3D;&#x3D; 1；++i 先赋值在运算，例如 a&#x3D;++i, 先运算 i&#x3D;i+1, 后运算 a&#x3D;i, 所以结果是 a &#x3D;&#x3D; 2。  12345678">
 <meta property="og:type" content="article">
 <meta property="og:title" content="由于 i++ 与++i 的运算顺序不同而导致的死循环">
-<meta property="og:url" content="https://www.fengkai.online/%E7%BC%96%E7%A8%8B/Csharp/%E7%94%B1%E4%BA%8Ei++%E4%B8%8E++i%E7%9A%84%E8%BF%90%E7%AE%97%E9%A1%BA%E5%BA%8F%E4%B8%8D%E5%90%8C%E8%80%8C%E5%AF%BC%E8%87%B4%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF.html">
+<meta property="og:url" content="https://hexo.loufengkai.top/%E7%BC%96%E7%A8%8B/Csharp/%E7%94%B1%E4%BA%8Ei++%E4%B8%8E++i%E7%9A%84%E8%BF%90%E7%AE%97%E9%A1%BA%E5%BA%8F%E4%B8%8D%E5%90%8C%E8%80%8C%E5%AF%BC%E8%87%B4%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF.html">
 <meta property="og:site_name" content="医学院の工科狗的博客">
 <meta property="og:description" content="死循环的原因：i++ 和 ++i 的基本功能是相同的，都是对变量 i 进行自增 1 运算，从功能上讲相当于 i &#x3D;i+1 ;两个的区别在于：int i&#x3D;1,a&#x3D;0;i++ 先运算在赋值，例如 a&#x3D;i++, 先运算 a&#x3D;i, 后运算 i&#x3D;i+1, 所以结果是 a &#x3D;&#x3D; 1；++i 先赋值在运算，例如 a&#x3D;++i, 先运算 i&#x3D;i+1, 后运算 a&#x3D;i, 所以结果是 a &#x3D;&#x3D; 2。  12345678">
 <meta property="og:locale" content="zh_CN">
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.fengkai.online","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"hexo.loufengkai.top","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -339,7 +339,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>由于 i++ 与++i 的运算顺序不同而导致的死循环</div>
-      <div>https://www.fengkai.online/编程/Csharp/由于i++与++i的运算顺序不同而导致的死循环.html</div>
+      <div>https://hexo.loufengkai.top/编程/Csharp/由于i++与++i的运算顺序不同而导致的死循环.html</div>
     </div>
     <div class="license-meta">
       
