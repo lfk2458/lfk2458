@@ -16,18 +16,18 @@
   <meta name="author" content="医学院の工科狗">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Docker 安装 bitwarden说明： bitwarden 是一款开源密码管理器，其衍生版本 docker 镜像名为 bitwarden_rs。 bitwarden_rs 项目从 v2.21.0 开始，已更名为 Vaultwarden。 项目地址：https:&#x2F;&#x2F;github.com&#x2F;dani-garcia&#x2F;vaultwarden Ps：文中会使用到 Portainer-Docker 可视化">
+    <meta name="description" content="此方法过于麻烦弃用  Docker 安装 bitwarden说明： bitwarden 是一款开源密码管理器，其衍生版本 docker 镜像名为 bitwarden_rs。 bitwarden_rs 项目从 v2.21.0 开始，已更名为 Vaultwarden。 项目地址：https:&#x2F;&#x2F;github.com&#x2F;dani-garcia&#x2F;vaultwarden Ps：文中会使用到 Portaine">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker 安装 bitwarden">
 <meta property="og:url" content="https://hexo.loufengkai.top/%E8%BD%AF%E4%BB%B6%E6%95%99%E7%A8%8B/Docker/Docker%E5%AE%89%E8%A3%85bitwarden.html">
 <meta property="og:site_name" content="医学院の工科狗的博客">
-<meta property="og:description" content="Docker 安装 bitwarden说明： bitwarden 是一款开源密码管理器，其衍生版本 docker 镜像名为 bitwarden_rs。 bitwarden_rs 项目从 v2.21.0 开始，已更名为 Vaultwarden。 项目地址：https:&#x2F;&#x2F;github.com&#x2F;dani-garcia&#x2F;vaultwarden Ps：文中会使用到 Portainer-Docker 可视化">
+<meta property="og:description" content="此方法过于麻烦弃用  Docker 安装 bitwarden说明： bitwarden 是一款开源密码管理器，其衍生版本 docker 镜像名为 bitwarden_rs。 bitwarden_rs 项目从 v2.21.0 开始，已更名为 Vaultwarden。 项目地址：https:&#x2F;&#x2F;github.com&#x2F;dani-garcia&#x2F;vaultwarden Ps：文中会使用到 Portaine">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img2022.cnblogs.com/blog/2224398/202203/2224398-20220303145132517-663623153.png">
 <meta property="og:image" content="https://img2022.cnblogs.com/blog/2224398/202203/2224398-20220303145153373-2014990969.png">
 <meta property="og:image" content="https://img2022.cnblogs.com/blog/2224398/202203/2224398-20220303145206783-395889605.png">
 <meta property="article:published_time" content="2023-05-28T13:17:29.000Z">
-<meta property="article:modified_time" content="2023-05-28T13:36:34.607Z">
+<meta property="article:modified_time" content="2023-12-03T16:12:51.362Z">
 <meta property="article:author" content="医学院の工科狗">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary_large_image">
@@ -291,7 +291,10 @@
             
               <div class="markdown-body">
                 
-                <h2 id="Docker-安装-bitwarden"><a href="#Docker-安装-bitwarden" class="headerlink" title="Docker 安装 bitwarden"></a>Docker 安装 bitwarden</h2><p>说明：</p>
+                <blockquote>
+<p>此方法过于麻烦弃用</p>
+</blockquote>
+<h2 id="Docker-安装-bitwarden"><a href="#Docker-安装-bitwarden" class="headerlink" title="Docker 安装 bitwarden"></a>Docker 安装 bitwarden</h2><p>说明：</p>
 <p>bitwarden 是一款开源密码管理器，其衍生版本 docker 镜像名为 bitwarden_rs。</p>
 <p>bitwarden_rs 项目从 v2.21.0 开始，已更名为 Vaultwarden。</p>
 <p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/dani-garcia/vaultwarden">https://github.com/dani-garcia/vaultwarden</a></p>
@@ -322,7 +325,7 @@ zerossl 的 eab-kid 和 eab-hmac-key，godaddy 的 GD_Key 和 GD_Secret 有效�
 </code></pre><h3 id="2-5-其他操作"><a href="#2-5-其他操作" class="headerlink" title="2.5 其他操作"></a>2.5 其他操作</h3><pre><code class="hljs">docker run --rm  -it -v &quot;/data/acme.sh/out/&quot;:/acme.sh neilpang/acme.sh --revoke  -d example.com
 $ acme.sh --renew -d example.com --force
 </code></pre><h2 id="3-配置-nginx-反向代理"><a href="#3-配置-nginx-反向代理" class="headerlink" title="3. 配置 nginx 反向代理"></a>3. 配置 nginx 反向代理</h2><h3 id="3-1docker-安装-nginx"><a href="#3-1docker-安装-nginx" class="headerlink" title="3.1docker 安装 nginx"></a>3.1docker 安装 nginx</h3><pre><code class="hljs">docker  pull  nginx
-</code></pre><h3 id="3-2-运行-nginx，把-nginx-容器的端口映射到本地端口，"><a href="#3-2-运行-nginx，把-nginx-容器的端口映射到本地端口，" class="headerlink" title="3.2 运行 nginx，把 nginx 容器的端口映射到本地端口，"></a>3.2 运行 nginx，把 nginx 容器的端口映射到本地端口，</h3><p>把 nginx 容器的目录映射到本地的目录，设置重启策略</p>
+</code></pre><h3 id="3-2-运行-nginx，把-nginx-容器的端口映射到本地端口"><a href="#3-2-运行-nginx，把-nginx-容器的端口映射到本地端口" class="headerlink" title="3.2 运行 nginx，把 nginx 容器的端口映射到本地端口"></a>3.2 运行 nginx，把 nginx 容器的端口映射到本地端口</h3><p>把 nginx 容器的目录映射到本地的目录，设置重启策略</p>
 <pre><code class="hljs">docker  run  -it  -d  -v  &quot;/data/nginx/config/&quot;:/config/  -v &quot;/data/nginx/www/html/&quot;:/usr/share/nginx/html/ -v &quot;/data/nginx/download/&quot;:/opt/download/ -p  80:80  -p 443:443  -p  3012:3012  --name nginx  --restart=always  nginx
 </code></pre><h3 id="3-3-把-acme-sh-生成的证书上传到-nginx-服务目录下"><a href="#3-3-把-acme-sh-生成的证书上传到-nginx-服务目录下" class="headerlink" title="3.3 把 acme.sh 生成的证书上传到 nginx 服务目录下"></a>3.3 把 acme.sh 生成的证书上传到 nginx 服务目录下</h3><p>&lt;因为已把’/config’ 目录目录映射到本地，所以只要复制文件到 ‘/data/nginx/‘ 目录下就可以了&gt;</p>
 <pre><code class="hljs">cd /data/acme.sh/out/example.com/
@@ -347,7 +350,7 @@ $ mv /opt/download/web.conf /etc/nginx/conf.d/example.com.conf
 
         server_name example.com;
 
-        rewrite ^/(.*) https://$server_name/$1 permanent;
+  rewrite ^/(.*) https://$server_name/$1 permanent;
     &#125;
 
 server
@@ -369,30 +372,30 @@ server
 
         # ssl_dhparam /etc/nginx/dhparam.pem;
 
-        add_header Strict-Transport-Security &quot;max-age=63072000; includeSubdomains; preload&quot;;
-        add_header X-Frame-Options DENY;
-        add_header X-Content-Type-Options nosniff;
+  add_header Strict-Transport-Security &quot;max-age=63072000; includeSubdomains; preload&quot;;
+  add_header X-Frame-Options DENY;
+  add_header X-Content-Type-Options nosniff;
 
-        location / &#123;
-                proxy_set_header  Host  zheteng.pw;
-                proxy_pass http://192.168.20.5:8001;
+  location / &#123;
+          proxy_set_header  Host  zheteng.pw;
+          proxy_pass http://192.168.20.5:8001;
 
-                proxy_redirect off;
-                   proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        &#125;
+          proxy_redirect off;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  &#125;
 
-        location /notifications/hub &#123;
-            proxy_pass http://127.0.0.1:3012;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection &quot;upgrade&quot;;
-          &#125;
-
-          location /notifications/hub/negotiate &#123;
-            proxy_pass http://192.168.20.5:8001;
-
-          &#125;
+  location /notifications/hub &#123;
+      proxy_pass http://127.0.0.1:3012;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection &quot;upgrade&quot;;
     &#125;
+
+    location /notifications/hub/negotiate &#123;
+      proxy_pass http://192.168.20.5:8001;
+
+    &#125;
+ &#125;
 </code></pre><h2 id="4-certbot-使用"><a href="#4-certbot-使用" class="headerlink" title="4.certbot 使用"></a>4.certbot 使用</h2><h3 id="4-1-安装更新-snap"><a href="#4-1-安装更新-snap" class="headerlink" title="4.1 安装更新 snap"></a>4.1 安装更新 snap</h3><pre><code class="hljs">ubuntu20 自带 snap
 sudo snap install core; sudo snap refresh core
 </code></pre><p>4.2 安装 certbot</p>
@@ -514,8 +517,8 @@ $ sudo certbot certonly --apache
                   <article class="post-next col-6">
                     
                     
-                      <a href="/%E8%BD%AF%E4%BB%B6%E6%95%99%E7%A8%8B/%E5%85%B6%E4%BB%96/SQL%20Server%20Management%20Studio%20(SSMS,SQL%20Server%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7)%20%E4%B8%80%E7%9B%B4%E5%9C%A8%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F%E5%8C%85%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html" title="SQL Server Management Studio (SSMS,SQL Server 管理工具）一直在加载程序包解决方案">
-                        <span class="hidden-mobile">SQL Server Management Studio (SSMS,SQL Server 管理工具）一直在加载程序包解决方案</span>
+                      <a href="/%E8%BD%AF%E4%BB%B6%E6%95%99%E7%A8%8B/%E5%85%B6%E4%BB%96/Markdown%E8%AF%AD%E6%B3%95.html" title="Markdown 语法">
+                        <span class="hidden-mobile">Markdown 语法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -793,20 +796,5 @@ $ sudo certbot certonly --apache
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
