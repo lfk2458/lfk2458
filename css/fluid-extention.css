@@ -30,10 +30,10 @@ html, body, .markdown-body { font-family: "LXGWWenKai" }
 
 /* 修改目录样式 */
 .toc-header{/* 目录两个字 */
-    color: #dfe2e5;
+    color: #ffff;
 }
 .tocbot-link{/* 目录列表 */
-    color: #dfe2e5;
+    color: #ffff;
 }
 .tocbot-active-link {/* 当前链接 */
     font-weight: bold;
@@ -50,7 +50,7 @@ html, body, .markdown-body { font-family: "LXGWWenKai" }
 .footer-inner {
     font-weight: bold;
     size: 0.85em;
-    color: #dfe2e5;
+    color: #ffff;
 }
 
 
