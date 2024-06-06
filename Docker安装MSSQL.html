@@ -1,0 +1,851 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Karl">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Docker 安装 MSSQL群晖安装 下载 MSSQL 镜像   由于在群晖 Docker 的注册表中无法搜索到微软官方的镜像，因此这里我们在 SSH 客户端通过 bash 命令来下载镜像。 首先，在群晖主页 - 控制面板 - 连接性 - 终端机和 SNMP-终端机选项卡中启动 SSH 功能，如下图： 然后通过 SSH 客户端连接至群晖系统，这里我用的是 Tabby Terminal，然后执行以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 安装 MSSQL">
+<meta property="og:url" content="https://hexo.loufengkai.top/Docker%E5%AE%89%E8%A3%85MSSQL.html">
+<meta property="og:site_name" content="Karl&#39;s Blog">
+<meta property="og:description" content="Docker 安装 MSSQL群晖安装 下载 MSSQL 镜像   由于在群晖 Docker 的注册表中无法搜索到微软官方的镜像，因此这里我们在 SSH 客户端通过 bash 命令来下载镜像。 首先，在群晖主页 - 控制面板 - 连接性 - 终端机和 SNMP-终端机选项卡中启动 SSH 功能，如下图： 然后通过 SSH 客户端连接至群晖系统，这里我用的是 Tabby Terminal，然后执行以">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/clipboard_20230208_121940.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/clipboard_20230208_122254.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/clipboard_20230208_122603.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080035215.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080039350.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080044874.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080050483.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080115377.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080054885.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080056913.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080056964.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080057305.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080115976.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080116784.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080118909.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080120450.png">
+<meta property="og:image" content="https://image.loufengkai.top/siyuan/202302080122914.png">
+<meta property="article:published_time" content="2023-05-28T13:18:40.000Z">
+<meta property="article:modified_time" content="2023-12-03T15:47:53.426Z">
+<meta property="article:author" content="Karl">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image.loufengkai.top/siyuan/clipboard_20230208_121940.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Docker 安装 MSSQL - Karl&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fluid-extention.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"hexo.loufengkai.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 50vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Karl の 学习笔记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Docker 安装 MSSQL"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Karl
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-28 21:18" pubdate>
+          2023年5月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Docker 安装 MSSQL</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2023年12月3日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Docker-安装-MSSQL"><a href="#Docker-安装-MSSQL" class="headerlink" title="Docker 安装 MSSQL"></a>Docker 安装 MSSQL</h1><h2 id="群晖安装"><a href="#群晖安装" class="headerlink" title="群晖安装"></a>群晖安装</h2><ol>
+<li>下载 MSSQL 镜像</li>
+</ol>
+<ul>
+<li>由于在群晖 Docker 的注册表中无法搜索到微软官方的镜像，因此这里我们在 SSH 客户端通过 bash 命令来下载镜像。</li>
+<li>首先，在群晖主页 - 控制面板 - 连接性 - 终端机和 SNMP-终端机选项卡中启动 SSH 功能，如下图：<br><img src="https://image.loufengkai.top/siyuan/clipboard_20230208_121940.png" srcset="/img/loading.gif" lazyload alt="启用群晖的 SSH 功能"></li>
+<li>然后通过 SSH 客户端连接至群晖系统，这里我用的是 Tabby Terminal，然后执行以下命令：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo docker pull mcr.microsoft.com/mssql/server:2022-latest<br></code></pre></td></tr></table></figure>
+<p>执行结果如下图：<br><img src="https://image.loufengkai.top/siyuan/clipboard_20230208_122254.png" srcset="/img/loading.gif" lazyload alt="下载 MSSQL 镜像"></p>
+<ul>
+<li>回到群晖主界面-Docker-映像，就可以看到这个镜像了，如下图：<br><img src="https://image.loufengkai.top/siyuan/clipboard_20230208_122603.png" srcset="/img/loading.gif" lazyload alt="群晖主界面-Docker-映像"></li>
+</ul>
+<ol>
+<li>创建持久化挂载目录并设置目录权限<br>如下图创建目录：<br><img src="https://image.loufengkai.top/siyuan/202302080035215.png" srcset="/img/loading.gif" lazyload alt="创建目录"><br>并鼠标右键点击 mssqlserver-属性，新增用户权限，这里为了简化，把 mssqlserver 这个目录及子目录的所有权限设置给 EveryOne，如下图：<br><img src="https://image.loufengkai.top/siyuan/202302080039350.png" srcset="/img/loading.gif" lazyload alt="授予权限"></li>
+<li>启动 mcr.microsoft.com/mssql/server:2022-latest 镜像</li>
+</ol>
+<ul>
+<li>从群晖主页-Docker-映像列表中找到 mssql/server，然后点击上面的启动按钮，如下图：<br><img src="https://image.loufengkai.top/siyuan/202302080044874.png" srcset="/img/loading.gif" lazyload alt="创建容器"><br>在启动对话框中输入容器名称、设置资源限制，重启自动启动。</li>
+<li>然后点击“高级设置”按钮增加 2 个环境变量，如下图：<br><img src="https://image.loufengkai.top/siyuan/202302080050483.png" srcset="/img/loading.gif" lazyload alt="设置环境变量"><blockquote>
+<p>ACCEPT_EULA 表示同意微软的许可协议，值必须是 Y。<br>MSSQL_SA_PASSWORD 表示 sa 账户的密码，必须是强安全规则的，大小写字母特殊字符数字切长度大于等于 8</p>
+</blockquote>
+</li>
+<li>点击“保存”按钮，然后点击“下一步”，如下图：<br><img src="https://image.loufengkai.top/siyuan/202302080115377.png" srcset="/img/loading.gif" lazyload alt="保存"><br>这里是进行主机端口与容器端口进行映射。</li>
+<li>点击‘下一步“按钮，如下图：</li>
+<li><img src="https://image.loufengkai.top/siyuan/202302080054885.png" srcset="/img/loading.gif" lazyload alt="映射端口"><br>点击”添加文件夹“，进行持久化挂载目录映射，如下图：<br><img src="https://image.loufengkai.top/siyuan/202302080056913.png" srcset="/img/loading.gif" lazyload alt="挂载目录映射"></li>
+<li>点击”下一步“，如下图：<br><img src="https://image.loufengkai.top/siyuan/202302080056964.png" srcset="/img/loading.gif" lazyload alt="摘要"></li>
+<li>点击”完成“按钮，容器就会启动，如下图：<br><img src="https://image.loufengkai.top/siyuan/202302080057305.png" srcset="/img/loading.gif" lazyload alt="启动容器"></li>
+</ul>
+<ol>
+<li>在工作电脑访问 Docker 中的 SQL Server</li>
+</ol>
+<ul>
+<li>可以在工作电脑上安装一个 SSMS，启动后，输入连接参数，如下图：<br><img src="https://image.loufengkai.top/siyuan/202302080115976.png" srcset="/img/loading.gif" lazyload alt="输入连接参数"></li>
+<li>点击”连接“，如下图：<br><img src="https://image.loufengkai.top/siyuan/202302080116784.png" srcset="/img/loading.gif" lazyload alt="连接群晖上的 MSSQL"></li>
+<li><p>新建查询，查看一下数据库的版本，如下图：<br><img src="https://image.loufengkai.top/siyuan/202302080118909.png" srcset="/img/loading.gif" lazyload alt="查询"></p>
+</li>
+<li><p>创建一个数据库，如下图：<br><img src="https://image.loufengkai.top/siyuan/202302080120450.png" srcset="/img/loading.gif" lazyload alt="创建数据库"></p>
+</li>
+<li>在群晖 File Station 中查看数据库文件，如下图：<br><img src="https://image.loufengkai.top/siyuan/202302080122914.png" srcset="/img/loading.gif" lazyload alt="查看数据库文件"></li>
+</ul>
+<h2 id="非群晖安装"><a href="#非群晖安装" class="headerlink" title="非群晖安装"></a>非群晖安装</h2><ol>
+<li>从 Microsoft 容器注册表中请求 SQL Server 2022 (16.x) Linux 容器映像。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo docker pull mcr.microsoft.com/mssql/server:2022-latest<br></code></pre></td></tr></table></figure>
+<ol>
+<li>要使用 Docker 运行 Linux 容器映像，可以从 Bash Shell 或提升的 PowerShell 命令提示符使用以下命令。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo docker run -e <span class="hljs-string">&quot;ACCEPT_EULA=Y&quot;</span> -e <span class="hljs-string">&quot;MSSQL_SA_PASSWORD=&lt;YourStrong@Passw0rd&gt;&quot;</span> \<br>   -p 1433:1433 --name sql1 --hostname sql1 \<br>   -d \<br>   mcr.microsoft.com/mssql/server:2022-latest<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>密码应符合 SQL Server 默认密码策略，否则容器无法设置 SQL Server，将停止工作。默认情况下，密码必须为至少八个字符且包含以下四种字符中的三种：大写字母、小写字母、十进制数字、符号。</p>
+</blockquote>
+<p>下表对前一个  <code>docker run</code>  示例中的参数进行了说明：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>-e “ACCEPT_EULA=Y”</strong></td>
+<td style="text-align:left">将  <code>ACCEPT_EULA</code>变量设置为任意值，以确认接受最终用户许可协议。SQL Server 映像的必需设置。</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>-e “MSSQL_SA_PASSWORD=<a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x59;&#111;&#117;&#x72;&#83;&#x74;&#x72;&#111;&#110;&#x67;&#x40;&#x50;&#x61;&#x73;&#x73;&#x77;&#48;&#x72;&#x64;">&#x59;&#111;&#117;&#x72;&#83;&#x74;&#x72;&#111;&#110;&#x67;&#x40;&#x50;&#x61;&#x73;&#x73;&#x77;&#48;&#x72;&#x64;</a>“</strong></td>
+<td style="text-align:left">指定至少包含 8 个字符且符合  <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/sql/relational-databases/security/password-policy?view=sql-server-ver16">SQL Server 密码要求</a> 的强密码。SQL Server 映像的必需设置。</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>-e “MSSQL<em>COLLATION=&lt;_SQL_Server_collation</em>&gt;”</strong></td>
+<td style="text-align:left">指定自定义 SQL Server 排序规则，而不使用默认值  <code>SQL_Latin1_General_CP1_CI_AS</code>。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>-p 1433:1433</strong></td>
+<td style="text-align:left">将主机环境中的 TCP 端口（第一个值）映射到容器中的 TCP 端口（第二个值）。在此示例中，SQL Server 侦听容器中的 TCP 1433，此容器端口随后会对主机上的 TCP 端口 1433 公开。</td>
+<td>公开。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>—name sql1</strong></td>
+<td style="text-align:left">为容器指定一个自定义名称，而不是使用随机生成的名称。如果运行多个容器，则无法重复使用相同的名称。</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>—hostname sql1</strong></td>
+<td style="text-align:left">用于显式设置容器主机名。如果未指定主机名，则主机名默认为容器 ID，这是随机生成的系统 GUID。</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>-d</strong></td>
+<td style="text-align:left">在后台运行容器（守护程序）。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>mcr.microsoft.com/mssql/server:2022-latest</strong></td>
+<td style="text-align:left">SQL Server Linux 容器映像。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li>要查看 Docker 容器，请使用  <code>docker ps</code>  命令。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo docker ps -a<br></code></pre></td></tr></table></figure>
+<p>应该会看到与下面类似的输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Bash">CONTAINER ID   IMAGE                                        COMMAND                    CREATED         STATUS         PORTS                                       NAMES<br>d4a1999ef83e   mcr.microsoft.com/mssql/server:2022-latest   <span class="hljs-string">&quot;/opt/mssql/bin/perm...&quot;</span>   2 minutes ago   Up 2 minutes   0.0.0.0:1433-&gt;1433/tcp, :::1433-&gt;1433/tcp   sql1<br></code></pre></td></tr></table></figure>
+<ol>
+<li>更改系统管理员密码<br>SA 帐户是安装过程中在 SQL Server 实例上创建的系统管理员。创建 SQL Server 容器后，可以通过在容器中运行中运行  <code>echo $MSSQL_SA_PASSWORD</code>  来发现指定的  <code>MSSQL_SA_PASSWORD</code>环境变量。出于安全考虑，请考虑更改 SA 密码。码。</li>
+</ol>
+<ul>
+<li>选择 SA 用户要使用的强密码。</li>
+<li>使用  <code>docker exec</code>运行 sqlcmd，以使用 Transact-SQL 更改密码。以下示例将从用户输入中读取旧密码和新密码。码。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo docker <span class="hljs-built_in">exec</span> -it sql1 /opt/mssql-tools/bin/sqlcmd \<br>-S localhost -U SA \<br> -P <span class="hljs-string">&quot;<span class="hljs-subst">$(read -sp <span class="hljs-string">&quot;Enter current SA password: &quot;</span>; echo <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;REPLY&#125;</span>&quot;</span>)</span>&quot;</span> \<br> -Q <span class="hljs-string">&quot;ALTER LOGIN SA WITH PASSWORD=\&quot;<span class="hljs-subst">$(read -sp <span class="hljs-string">&quot;Enter new SA password: &quot;</span>; echo <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;REPLY&#125;</span>&quot;</span>)</span>\&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%95%99%E7%A8%8B/" class="category-chain-item">软件教程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Docker/" class="print-no-link">#Docker</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Docker 安装 MSSQL</div>
+      <div>https://hexo.loufengkai.top/Docker安装MSSQL.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Karl</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Docker%E7%89%88%E6%80%9D%E6%BA%90%E7%AC%94%E8%AE%B0%E4%BD%BF%E7%94%A8Dark+%E4%B8%BB%E9%A2%98%EF%BC%8C%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E2%80%9C%E9%9C%9E%E9%B9%9C%E6%96%87%E6%A5%B7%E7%AD%89%E5%AE%BD%E2%80%9D%E5%AD%97%E4%BD%93%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F.html" title="Docker 版思源笔记使用 Dark+ 主题，无法显示“霞鹜文楷等宽”字体的解决方式">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Docker 版思源笔记使用 Dark+ 主题，无法显示“霞鹜文楷等宽”字体的解决方式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Dcoker%E5%AE%89%E8%A3%85Cloudreve%E7%BD%91%E7%9B%98.html" title="Dcoker 安装 Cloudreve 网盘">
+                        <span class="hidden-mobile">Dcoker 安装 Cloudreve 网盘</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <div style="font-size: 0.85rem">  <span id="timeDate">载入天数...</span>  <span id="times">载入时分秒...</span>  <script src="/js/duration.js"></script>  </div>  <div class="framework-info" style="font-size: 0.85rem">  <div class="copyright"> Copyright &copy;2024 By Karl  <span class="footer-separator">|</span>  <span class="footer-separator">Powered by 腾讯云</span>  <span class="footer-separator">|</span>  <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>  <span class="footer-separator">&amp;</span>  <a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">fluid</a> <br>  <span class="footer-separator">没有BUG的代码是不完美的！</span>  </div>  </div>
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      皖 ICP 备 2021010043 号 -1
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
