@@ -16,24 +16,25 @@
   <meta name="author" content="Karl">
   <meta name="keywords" content="">
   
-    <meta name="description" content="常用 Docker 镜像及生成脚本 思源笔记  123456789101112## 创建文件夹mkdir siyuan&#x2F;workspace## 生成命令docker run  --name siyuan -it -d   --restart&#x3D;always  -e LANG&#x3D;zh_CN.UTF-8 -e LC_ALL&#x3D;zh_CN.UTF-8 -v &#x2F;siyuan&#x2F;workspace:&#x2F;siyuan&#x2F;">
+    <meta name="description" content="临时使用   在使用 pip 的时候加参数-i 1pip install -i https:&#x2F;&#x2F;mirrors.cloud.tencent.com&#x2F;pypi&#x2F;simple &lt;some-package&gt; 永久修改1pip config set global.index-url &lt;pip 源&gt; 常见的 pip 源如下  清华大学源：https:&#x2F;&#x2F;pypi.tuna.tsing">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用 Docker 镜像及生成脚本">
-<meta property="og:url" content="https://hexo.loufengkai.top/%E5%B8%B8%E7%94%A8Docker%E9%95%9C%E5%83%8F%E5%8F%8A%E7%94%9F%E6%88%90%E8%84%9A%E6%9C%AC.html">
+<meta property="og:title" content="pip 使用国内镜像源">
+<meta property="og:url" content="https://hexo.loufengkai.top/pip%E4%BD%BF%E7%94%A8%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90.html">
 <meta property="og:site_name" content="Karl&#39;s Blog">
-<meta property="og:description" content="常用 Docker 镜像及生成脚本 思源笔记  123456789101112## 创建文件夹mkdir siyuan&#x2F;workspace## 生成命令docker run  --name siyuan -it -d   --restart&#x3D;always  -e LANG&#x3D;zh_CN.UTF-8 -e LC_ALL&#x3D;zh_CN.UTF-8 -v &#x2F;siyuan&#x2F;workspace:&#x2F;siyuan&#x2F;">
+<meta property="og:description" content="临时使用   在使用 pip 的时候加参数-i 1pip install -i https:&#x2F;&#x2F;mirrors.cloud.tencent.com&#x2F;pypi&#x2F;simple &lt;some-package&gt; 永久修改1pip config set global.index-url &lt;pip 源&gt; 常见的 pip 源如下  清华大学源：https:&#x2F;&#x2F;pypi.tuna.tsing">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-14T13:17:29.000Z">
-<meta property="article:modified_time" content="2024-04-14T12:25:20.584Z">
+<meta property="article:published_time" content="2024-06-08T14:29:55.000Z">
+<meta property="article:modified_time" content="2024-06-08T14:29:55.000Z">
 <meta property="article:author" content="Karl">
-<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="pip">
+<meta property="article:tag" content="软件教程">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>常用 Docker 镜像及生成脚本 - Karl&#39;s Blog</title>
+  <title>pip 使用国内镜像源 - Karl&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="常用 Docker 镜像及生成脚本"></span>
+            <span id="subtitle" data-typed-text="pip 使用国内镜像源"></span>
           
         </div>
 
@@ -219,8 +220,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-14 21:17" pubdate>
-          2024年4月14日 晚上
+        <time datetime="2024-06-08 22:29" pubdate>
+          2024年6月8日 晚上
         </time>
       </span>
     
@@ -231,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          88 字
+          82 字
         
       </span>
     
@@ -287,28 +288,22 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">常用 Docker 镜像及生成脚本</h1>
-            
-              <p id="updated-time" class="note note-info" style="">
-                
-                  
-                    本文最后更新于 2024年4月14日 晚上
-                  
-                
-              </p>
+            <h1 id="seo-header">pip 使用国内镜像源</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="常用-Docker-镜像及生成脚本"><a href="#常用-Docker-镜像及生成脚本" class="headerlink" title="常用 Docker 镜像及生成脚本"></a>常用 Docker 镜像及生成脚本</h1><ul>
-<li>思源笔记</li>
-</ul>
-<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs docker"><span class="hljs-comment">## 创建文件夹</span><br>mkdir siyuan/workspace<br><span class="hljs-comment">## 生成命令</span><br>docker <span class="hljs-keyword">run</span><span class="language-bash"> </span><br> --name siyuan -it -d  <br> --restart=always <br> -e LANG=zh_CN.UTF-<span class="hljs-number">8</span><br> -e LC_ALL=zh_CN.UTF-<span class="hljs-number">8</span><br> -v /siyuan/workspace:/siyuan/workspace <br> -p <span class="hljs-number">6806</span>:<span class="hljs-number">6806</span> b3log/siyuan:latest<br> --workspace=/siyuan/workspace <span class="hljs-comment">#工作空间</span><br> -accessAuthCode password <span class="hljs-comment"># 授权码</span><br></code></pre></td></tr></table></figure>
+                <h2 id="临时使用"><a href="#临时使用" class="headerlink" title="临时使用"></a>临时使用</h2><p>   在使用 pip 的时候<code>加参数-i</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install -i https://mirrors.cloud.tencent.com/pypi/simple &lt;some-package&gt;<br></code></pre></td></tr></table></figure>
+<h2 id="永久修改"><a href="#永久修改" class="headerlink" title="永久修改"></a>永久修改</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip config <span class="hljs-built_in">set</span> global.index-url &lt;pip 源&gt;<br></code></pre></td></tr></table></figure>
+<h2 id="常见的-pip-源如下"><a href="#常见的-pip-源如下" class="headerlink" title="常见的 pip 源如下"></a>常见的 pip 源如下</h2><blockquote>
 <ul>
-<li>vaultwarden/server</li>
+<li>清华大学源：<a target="_blank" rel="noopener" href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a></li>
+<li>豆瓣源：<a target="_blank" rel="noopener" href="https://pypi.douban.com/simple">https://pypi.douban.com/simple</a></li>
+<li>腾讯源：<a target="_blank" rel="noopener" href="https://mirrors.cloud.tencent.com/pypi/simple">https://mirrors.cloud.tencent.com/pypi/simple</a></li>
+<li>阿里源：<a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/pypi">https://mirrors.aliyun.com/pypi</a></li>
 </ul>
-<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs docker">docker <span class="hljs-keyword">run</span><span class="language-bash"> -d --name=bitwarden  -e WEBSOCKET_ENABLED=<span class="hljs-literal">true</span> -e LOG_FILE=/data/bitwarden.log  -e ADMIN_TOKEN=<span class="hljs-string">&#x27;密码&#x27;</span>  -p 8080:80 -p 3012:3012 -v /docker/bitwarden/data/:/data/ --restart=always  vaultwarden/server:latest</span><br></code></pre></td></tr></table></figure>
-<p>  ‍</p>
+</blockquote>
 
                 
               </div>
@@ -317,32 +312,13 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%95%99%E7%A8%8B/" class="category-chain-item">软件教程</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Docker/" class="print-no-link">#Docker</a>
+        <a href="/tags/pip/" class="print-no-link">#pip</a>
+      
+        <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%95%99%E7%A8%8B/" class="print-no-link">#软件教程</a>
       
     </div>
   
@@ -354,8 +330,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>常用 Docker 镜像及生成脚本</div>
-      <div>https://hexo.loufengkai.top/常用Docker镜像及生成脚本.html</div>
+      <div>pip 使用国内镜像源</div>
+      <div>https://hexo.loufengkai.top/pip使用国内镜像源.html</div>
     </div>
     <div class="license-meta">
       
@@ -367,7 +343,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年4月14日</div>
+          <div>2024年6月8日</div>
         </div>
       
       
@@ -411,18 +387,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/pip%E4%BD%BF%E7%94%A8%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90.html" title="pip 使用国内镜像源">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">pip 使用国内镜像源</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/%E9%80%9A%E8%BF%87%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E5%92%8CNginx%E5%BC%80%E5%90%AFDocker%E5%AE%B9%E5%99%A8HTTPS%E8%AE%BF%E9%97%AE.html" title="通过宝塔面板和 Nginx 开启 Docker 容器 HTTPS 访问">
-                        <span class="hidden-mobile">通过宝塔面板和 Nginx 开启 Docker 容器 HTTPS 访问</span>
+                      <a href="/%E5%B8%B8%E7%94%A8Docker%E9%95%9C%E5%83%8F%E5%8F%8A%E7%94%9F%E6%88%90%E8%84%9A%E6%9C%AC.html" title="常用 Docker 镜像及生成脚本">
+                        <span class="hidden-mobile">常用 Docker 镜像及生成脚本</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

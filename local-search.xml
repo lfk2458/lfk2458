@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>pip 使用国内镜像源</title>
+    <link href="/pip%E4%BD%BF%E7%94%A8%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90.html"/>
+    <url>/pip%E4%BD%BF%E7%94%A8%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90.html</url>
+    
+    <content type="html"><![CDATA[<h2 id="临时使用"><a href="#临时使用" class="headerlink" title="临时使用"></a>临时使用</h2><p>   在使用 pip 的时候<code>加参数-i</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install -i https://mirrors.cloud.tencent.com/pypi/simple &lt;some-package&gt;<br></code></pre></td></tr></table></figure><h2 id="永久修改"><a href="#永久修改" class="headerlink" title="永久修改"></a>永久修改</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip config <span class="hljs-built_in">set</span> global.index-url &lt;pip 源&gt;<br></code></pre></td></tr></table></figure><h2 id="常见的-pip-源如下"><a href="#常见的-pip-源如下" class="headerlink" title="常见的 pip 源如下"></a>常见的 pip 源如下</h2><blockquote><ul><li>清华大学源：<a href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a></li><li>豆瓣源：<a href="https://pypi.douban.com/simple">https://pypi.douban.com/simple</a></li><li>腾讯源：<a href="https://mirrors.cloud.tencent.com/pypi/simple">https://mirrors.cloud.tencent.com/pypi/simple</a></li><li>阿里源：<a href="https://mirrors.aliyun.com/pypi">https://mirrors.aliyun.com/pypi</a></li></ul></blockquote>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>pip</tag>
+      
+      <tag>软件教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>常用 Docker 镜像及生成脚本</title>
     <link href="/%E5%B8%B8%E7%94%A8Docker%E9%95%9C%E5%83%8F%E5%8F%8A%E7%94%9F%E6%88%90%E8%84%9A%E6%9C%AC.html"/>
     <url>/%E5%B8%B8%E7%94%A8Docker%E9%95%9C%E5%83%8F%E5%8F%8A%E7%94%9F%E6%88%90%E8%84%9A%E6%9C%AC.html</url>
@@ -408,7 +429,7 @@
   
   
   <entry>
-    <title>以换行 (`\r\n`) 拆分字符串</title>
+    <title>以换行 (`&#92;r&#92;n`) 拆分字符串</title>
     <link href="/%E4%BB%A5%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7%E6%8B%86%E5%88%86%E5%AD%97%E7%AC%A6%E4%B8%B2.html"/>
     <url>/%E4%BB%A5%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7%E6%8B%86%E5%88%86%E5%AD%97%E7%AC%A6%E4%B8%B2.html</url>
     
